@@ -14,18 +14,19 @@ DB_NAME = config['LOCAL']['PIALARA_DB_NAME']
 
 db = MongoClient(DB_URI)[DB_NAME]
 
-usuarios = [{
-    "fecha_nacimiento": datetime(1998, 5, 17),
-    "mail": "rococo@gmail.com",
-    "password": generate_password_hash("admin", method='sha256'),
-    "rol": "admin",
-    "nombre": "Rocío",
-    "sexo": "M",
-    "ultima_conexion": datetime.today()
-},
+users = [
+    {
+        "fecha_nacimiento": datetime(1998, 5, 17),
+        "email": "rococo@gmail.com",
+        "password": generate_password_hash("admin", method='sha256'),
+        "rol": "admin",
+        "nombre": "Rocío",
+        "sexo": "M",
+        "ultima_conexion": datetime.today()
+    },
     {
         "fecha_nacimiento": datetime(1989, 5, 17),
-        "mail": "mario@gmail.com",
+        "email": "mario@gmail.com",
         "password": generate_password_hash("admin", method='sha256'),
         "rol": "cliente",
         "nombre": "Mario",
@@ -41,7 +42,7 @@ usuarios = [{
     },
     {
         "fecha_nacimiento": datetime(1957, 4, 21),
-        "mail": "ines@gmail.com",
+        "email": "ines@gmail.com",
         "password": generate_password_hash("admin", method='sha256'),
         "rol": "tecnico",
         "nombre": "Inés",
@@ -51,7 +52,7 @@ usuarios = [{
     },
     {
         "fecha_nacimiento": datetime(1997, 2, 4),
-        "mail": "pedro@gmail.com",
+        "email": "pedro@gmail.com",
         "password": generate_password_hash("admin", method='sha256'),
         "rol": "cliente",
         "nombre": "Pedro",
@@ -67,7 +68,7 @@ usuarios = [{
     },
     {
         "fecha_nacimiento": datetime(1996, 3, 1),
-        "mail": "pedro@gmail.com",
+        "email": "pedro@gmail.com",
         "password": generate_password_hash("admin", method='sha256'),
         "rol": "cliente",
         "nombre": "Pedro",
@@ -84,7 +85,7 @@ usuarios = [{
 
     {
         "fecha_nacimiento": datetime(1945, 2, 12),
-        "mail": "pedro@gmail.com",
+        "email": "pedro@gmail.com",
         "password": generate_password_hash("admin", method='sha256'),
         "rol": "cliente",
         "nombre": "Hector",
@@ -105,14 +106,14 @@ userValidator = {
     "$jsonSchema": {
         "required": [
             'password',
-            'mail',
+            'email',
             'nombre',
             'rol',
             'fecha_nacimiento',
             'ultima_conexion'
         ],
         "properties": {
-            "mail": {
+            "email": {
                 "bsonType": 'string'
             },
             "password": {
@@ -208,7 +209,8 @@ userValidator = {
 
 try:
     db.drop_collection("usuarios")
-    db.create_collection("usuarios", validator=userValidator)
-    db.usuarios.insert_many(usuarios)
+    db.drop_collection("users")
+    db.create_collection("users", validator=userValidator)
+    db.users.insert_many(users)
 except Exception as e:
     print(e)

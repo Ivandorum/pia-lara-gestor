@@ -31,6 +31,17 @@ Ejecutamos
 flask --app pialara --debug run
 ```
 
+### Migrations
+
+Para importar las colecciones de la base de datos tenemos los archivos de la carpeta migrations.
+
+Comando para importar en local:
+```
+python3 migrations/audios_migration.py 
+```
+**Nota**: Se han actualizado algunos nombres de la base de datos
+
+
 ## Estructura de la aplicación
 
 El código principal de la aplicación está en el directorio pialara.
