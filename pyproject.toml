@@ -1,3 +1,9 @@
 [tool.semantic_release]
 version_variable = "pialara/__init__.py:__version__"
-branch = "feature/semantic-release"
+changelog_file = "CHANGELOG.md"
+upload_to_pypi = false
+
+[tool.semantic_release.branches]
+master = {}
+develop = {}
+"feature/semantic-release" = {}
