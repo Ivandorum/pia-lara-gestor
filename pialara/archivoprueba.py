@@ -1,1 +1,1 @@
-archivo = "hola mundo, este es un archivo finalisimo"
+archivo = "NUEVA PRUEBA"
