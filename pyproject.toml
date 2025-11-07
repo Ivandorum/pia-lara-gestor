@@ -1,0 +1,2 @@
+[tool.semantic_release]
+version_variable = "pialara/__init__.py:__version__"
